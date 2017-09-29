@@ -82,5 +82,10 @@ id_rsa.pub 是公钥,将其中的内容填写在，打开“Account settings”�
 
 ### 2. 将文件推送到github上
 
-`git remote add origin https://github.com/vueto/note.git`
-`git push -u origin master`
+第一次推送到github上
+
+关联一个远程库 `git remote add origin https://github.com/vueto/note.git`
+
+第一次推送master分支的所有内容 `git push -u origin master`
+
+之后可以通过 `git push origin master` 推送到github上

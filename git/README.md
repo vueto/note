@@ -88,4 +88,10 @@ id_rsa.pub 是公钥,将其中的内容填写在，打开“Account settings”�
 
 第一次推送master分支的所有内容 `git push -u origin master`
 
-之后可以通过 `git push origin master` 推送到github上
+之后可以通过 `git push origin master` g推送到github上
+
+## Git分支管理
+
+### 1.git checkout -b
+
+创建并切换分支 example: `git checkout -b dev`

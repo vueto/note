@@ -58,11 +58,11 @@ example: `git reset HEAD readme.txt`
 
 当你删除了一个文件有两种情况
 
-> 1. 确实要删除该文件
+> 1.确实要删除该文件
 
 >  那就用命令`git rm`删掉，并且`git commit`
 
-> 2. 删错了
+> 2.删错了
 
 >  `git checkout --filename` 
 
@@ -82,5 +82,5 @@ id_rsa.pub 是公钥,将其中的内容填写在，打开“Account settings”�
 
 ### 2. 将文件推送到github上
 
-git remote add origin https://github.com/vueto/note.git
-
+`git remote add origin https://github.com/vueto/note.git`
+`git push -u origin master`

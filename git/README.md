@@ -191,5 +191,13 @@ example： `git merge --no-ff -m "merge with no-ff" dev`
 
 现在，你的小伙伴要在`dev`分支上开发，就必须创建远程`origin`的`dev`分支到本地，于是他用这个命令创建本地dev分支
 
-`git checkout -b dev origin/dev`
+在本地新建一个分支： `git branch Branch1`
+切换到你的新分支: `git checkout Branch1`
+将新分支发布在github上： `git push origin Branch1`
+在本地删除一个分支： `git branch -d Branch1`
+在github远程端删除一个分支： `git push origin :Branch1`   (分支名前的冒号代表删除)
 
+
+与远程分支创建连接 `git branch --set-upstream dev origin/dev`
+
+抓取github上的分支 `git pull`

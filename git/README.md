@@ -222,7 +222,7 @@ example： `git merge --no-ff -m "merge with no-ff" dev`
 
 ### 标签管理
 
-1. 创建标签
+1.创建标签
 
 在Git中打标签非常简单，首先，切换到需要打标签的分支上：
 
@@ -285,7 +285,7 @@ example `git tag -d v0.1`
 
 >命令`git push origin :refs/tags/<tagname>`可以删除一个远程标签。
 
-##Github使用
+## Github使用
 
 如何参与一个开源项目呢？比如人气极高的bootstrap项目，这是一个非常强大的CSS框架，你可以访问它的项目主页`https://github.com/twbs/bootstrap`，点“Fork”就在自己的账号下克隆了一个bootstrap仓库，然后，从自己的账号下clone：
 

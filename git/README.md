@@ -92,6 +92,104 @@ id_rsa.pub 是公钥,将其中的内容填写在，打开“Account settings”�
 
 ## Git分支管理
 
-### 1.git checkout -b
+### 1. git checkout -b
 
 创建并切换分支 example: `git checkout -b dev`
+
+`git branch xxx` 创建分支
+
+`git checkout xxx` 切换分支
+
+`git branch` 查看当前分支
+
+### 2. 合并分支
+
+`git merge xxx` 合并xxx分支合并到当前分支
+
+### 3. 删除分支
+
+`git branch -d xxx` 删除xxx分支
+
+### 4. 解决冲突
+
+当合并分支产生冲突时，可以用 `git status` 查看冲突的文件
+
+### 分支管理策略
+
+通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。
+
+如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。
+
+强制禁用Fast forward模式，可以使用` git merge --no-ff xxx ` 合并分支
+
+example： `git merge --no-ff -m "merge with no-ff" dev`
+
+`-m` 参数带的描述
+
+### BUG分支
+
+`git stash`可以将当前的工作现场保存起来,可以创建临时分支愉快的改bug
+
+`git stash list`查看被保存起来的工作现场
+
+ 恢复工作现场
+
+1.`git stash apply`恢复后，stash内容并不删除，你需要用`git stash drop`来删除
+
+2.`git stash pop`，恢复的同时把stash内容也删了
+
+
+### Feature分支
+
+软件开发中，总有无穷无尽的新的功能要不断添加进来。
+
+添加一个新功能时，你肯定不希望因为一些实验性质的代码，把主分支搞乱了，所以，每添加一个新功能，最好新建一个feature分支，在上面开发，完成后，合并，最后，删除该feature分支。
+
+1.于是准备开发：
+
+创建新的分支 ` git checkout -b feature-vulcan`
+
+2.开发完毕后:
+
+放入暂存区 `git add vulcan.py`
+
+查看状态 `git status`
+
+提交到版本库 `git commit -m "add featrue vulcan"`
+
+3.合并分支
+
+切换分支 `git checkout dev` 
+
+销毁分支 `git branch -d feature-vulcan` 
+
+此时git会提醒feature-vulcan分支还没有被合并，如果删除，将丢失掉修改，如果要强行删除，需要使用命令`git branch -D feature-vulcan`然后使用该命令强行删除
+
+开发一个新feature，最好新建一个分支；
+
+如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除。
+
+### 多人协作
+
+当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin
+
+1.查看远程库的信息，用 `git remote` 或者 `git remote -v`查看更详细的信息
+
+####推送分支
+
+1.推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上
+
+`git push origin master`
+
+2.如果要推送其他分支，比如`dev`
+
+`git push origin dev`
+
+#### 抓取分支
+
+当你的小伙伴从远程库`clone`时，默认情况下，你的小伙伴只能看到本地的`master`分支。不信可以用`git branch`命令看看
+
+现在，你的小伙伴要在`dev`分支上开发，就必须创建远程`origin`的`dev`分支到本地，于是他用这个命令创建本地dev分支
+
+`git checkout -b dev origin/dev`
+

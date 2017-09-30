@@ -198,10 +198,105 @@ example： `git merge --no-ff -m "merge with no-ff" dev`
 在github远程端删除一个分支： `git push origin :Branch1`   (分支名前的冒号代表删除)
 
 
-<<<<<<< HEAD
-与远程分支创建连接 `git branch --set-upstream dev origin/dev`
+设置`dev`和`origin/dev`的链接 `git branch --set-upstream dev origin/dev`
 
-抓取github上的分支 `git pull`
-=======
+抓取分支 `git pull`
 
->>>>>>> dev
+小结：
+
+>查看远程库信息，使用`git remote -v`；
+
+>本地新建的分支如果不推送到远程，对其他人就是不可见的；
+
+>从本地推送分支，使用`git push origin branch-name`，如果推送失败，先用`git pull`抓取远程的新提交；
+
+>在本地创建和远程分支对应的分支，使用`git checkout -b branch-name origin/branch-name`，本地和远程分支的名称最好一致；
+
+>建立本地分支和远程分支的关联，使用`git branch --set-upstream branch-name origin/branch-name`；
+
+>从远程抓取分支，使用`git pull`，如果有冲突，要先处理冲突。
+
+### 标签管理
+
+1. 创建标签
+
+在Git中打标签非常简单，首先，切换到需要打标签的分支上：
+
+显示已有分支 `git branch`
+
+切换到需要打标签的分支 `git tag xxx`
+
+2.查看标签
+
+查看标签 `git tag`
+
+默认标签是打在最新提交的commit上的。有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？
+
+方法是找到历史提交的commit id，然后打上就可以了：
+
+查找历史提交记录 `git log --pretty=oneline --abbrev-commit`
+
+添加标签 `git tag 标签 需要打标签的版本号`
+
+example：`git tag v0.9 6224937`
+
+注意，标签不是按时间顺序列出，而是按字母排序的。可以用`git show <tagname>`查看标签信息
+
+还可以创建带有说明的标签，用`-a`指定标签名，`-m`指定说明文字：
+
+example `git tag -a v0.1 -m "version 0.1 released" 3628164`
+
+还可以通过`-s`用私钥签名一个标签：
+
+example `git tag -s v0.2 -m "signed version 0.2 released" fec145a`
+
+3.操作标签
+
+如果标签打错了，也可以删除：
+
+`git tag -d xxx`
+
+example `git tag -d v0.1`
+
+因为创建的标签都只存储在本地，不会自动推送到远程。所以，打错的标签可以在本地安全删除。
+
+如果要推送某个标签到远程，使用命令`git push origin <tagname>`
+
+或者，一次性推送全部尚未推送到远程的本地标签：
+`git push origin --tags`
+
+如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：
+
+然后，从远程删除。删除命令也是push，但是格式如下：
+
+`git push origin :refs/tags/v0.9`
+
+小结
+
+>命令`git push origin <tagname>`可以推送一个本地标签
+
+>命令`git push origin --tags`可以推送全部未推送过的本地标签；
+
+>命令`git tag -d <tagname>`可以删除一个本地标签
+
+>命令`git push origin :refs/tags/<tagname>`可以删除一个远程标签。
+
+##Github使用
+
+如何参与一个开源项目呢？比如人气极高的bootstrap项目，这是一个非常强大的CSS框架，你可以访问它的项目主页`https://github.com/twbs/bootstrap`，点“Fork”就在自己的账号下克隆了一个bootstrap仓库，然后，从自己的账号下clone：
+
+`git clone git@github.com:michaelliao/bootstrap.git`
+
+一定要从自己的账号下clone仓库，这样你才能推送修改。如果从bootstrap的作者的仓库地址`git@github.com:twbs/bootstrap.git`克隆，因为没有权限，你将不能推送修改。
+
+如果你想修复bootstrap的一个bug，或者新增一个功能，立刻就可以开始干活，干完后，往自己的仓库推送。
+
+如果你希望bootstrap的官方库能接受你的修改，你就可以在GitHub上发起一个pull request。当然，对方是否接受你的pull request就不一定了。
+
+小结
+
+>在GitHub上，可以任意Fork开源仓库；
+
+>自己拥有Fork后的仓库的读写权限；
+
+>可以推送pull request给官方仓库来贡献代码。

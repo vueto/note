@@ -198,6 +198,10 @@ example： `git merge --no-ff -m "merge with no-ff" dev`
 在github远程端删除一个分支： `git push origin :Branch1`   (分支名前的冒号代表删除)
 
 
+<<<<<<< HEAD
 与远程分支创建连接 `git branch --set-upstream dev origin/dev`
 
 抓取github上的分支 `git pull`
+=======
+
+>>>>>>> dev

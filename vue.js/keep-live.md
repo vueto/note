@@ -45,7 +45,7 @@ vue2.0提供了一个keep-alive组件
 
 `router设置`
 
-```json
+```bash
 ... 
   routes: [
     { path: '/', redirect: '/index',  component: Index, meta: { keepAlive: true }},
